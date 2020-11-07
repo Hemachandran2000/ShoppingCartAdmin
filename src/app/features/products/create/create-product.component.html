@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Create Product</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form role="form" [formGroup]="productForm">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': isSubmitted && f.cate_name.errors }">
+                                <label>Category name *</label>
+                                <select class="form-control" formControlName="cate_name"
+                                    (change)="onChangeCategory($event)">
+                                    <option value="">Choose Category</option>
+                                    <option *ngFor="let category of categoryList; let i=index" [ngValue]="category">
+                                        {{category}}</option>
+                                </select>
+                                <div *ngIf="isSubmitted && f.cate_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.cate_name.errors.required" class="error-text">Category name is
+                                        mandatory</div>
+                                </div>
+                            </div>
+                            <div class="form-group" [ngClass]="{ 'has-error': isSubmitted && f.sub_cate_name.errors }">
+                                <label>Sub category name *</label>
+                                <select class="form-control" formControlName="sub_cate_name"
+                                    (change)="onChangeSubCategory($event)">
+                                    <option value="">Choose Sub Category</option>
+                                    <option *ngFor="let category of subCategoryList; let i=index" [ngValue]="category">
+                                        {{category}}</option>
+                                </select>
+                                <div *ngIf="isSubmitted && f.sub_cate_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.sub_cate_name.errors.required" class="error-text">Sub category name is
+                                        mandatory</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Product name *</label>
+                                <input class="form-control" formControlName="prod_name" placeholder="Product name">
+                                <div *ngIf="isSubmitted && f.prod_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.prod_name.errors.required" class="error-text">Product name is
+                                        mandatory</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Product Desc</label>
+                                <textarea class="form-control" formControlName="prod_desc" placeholder="Product Desc"
+                                    cols="10" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Product Qty *</label>
+                                        <input class="form-control" formControlName="prod_qty"
+                                            placeholder="Product Qty">
+                                        <div *ngIf="isSubmitted && f.prod_qty.errors" class="invalid-feedback">
+                                            <div *ngIf="f.prod_qty.errors.required" class="error-text">Product quantity
+                                                is
+                                                mandatory</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Product original rate/ per Item *</label>
+                                        <input class="form-control" formControlName="prod_original_rate"
+                                            placeholder="Product original rate">
+                                        <div *ngIf="isSubmitted && f.prod_original_rate.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.prod_original_rate.errors.required" class="error-text">Product
+                                                original rate is
+                                                mandatory</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Product MRP rate/ per Item *</label>
+                                <input class="form-control" formControlName="prod_rate" placeholder="Product MRP rate">
+                                <div *ngIf="isSubmitted && f.prod_rate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.prod_rate.errors.required" class="error-text">Product rate is
+                                        mandatory</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Product measurement *</label>
+                                        <select class="form-control" formControlName="prod_qty_measure"
+                                            (change)="onChangeProdMeasure($event)">
+                                            <option value="">Choose Measurement</option>
+                                            <option *ngFor="let measure of productQtyMeasure; let i=index"
+                                                [ngValue]="measure">
+                                                {{measure}}</option>
+                                        </select>
+                                        <div *ngIf="isSubmitted && f.prod_qty_measure.errors" class="invalid-feedback">
+                                            <div *ngIf="f.prod_qty_measure.errors.required" class="error-text">Product
+                                                measurement is mandatory</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Product size *</label>
+                                        <input class="form-control" formControlName="prod_size"
+                                            placeholder="Product size">
+                                        <div *ngIf="isSubmitted && f.prod_size.errors" class="invalid-feedback">
+                                            <div *ngIf="f.prod_size.errors.required" class="error-text">Product size is
+                                                mandatory</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Product features</label>
+                                <textarea class="form-control" formControlName="prod_feature"
+                                    placeholder="Product feature" col="10" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="set-margin">
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-primary btn-custom" (click)="submit()">Submit</button>
+                            <button type="reset" class="btn btn-primary btn-custom" (click)="reset()">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

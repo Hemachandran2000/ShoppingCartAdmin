@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Create Category</h1>
+    </div>    
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">                        
+                        <form role="form" [formGroup]="categoryForm">
+                            <div class="form-group" [ngClass]="{ 'has-error': isCate_submit && fc.CategoryName.errors }">
+                                <label>Category name *</label>
+                                <!-- <input class="form-control" formControlName="CategoryName" placeholder="Category name"> -->
+                                <custom-input formControlName="CategoryName" customplaceholder="Category name"></custom-input>
+                                <div *ngIf="isCate_submit && fc.CategoryName.errors" class="invalid-feedback">
+                                    <div *ngIf="fc.CategoryName.errors.required" class="error-text">Category name is
+                                        mandatory</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Description/ details</label>
+                                <textarea class="form-control" formControlName="CategoryDesc" placeholder="Description/ details"
+                                    cols="10" rows="5"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-custom"
+                                (click)="onSubmit('Category')">Submit</button>
+                            <button type="reset" class="btn btn-primary btn-custom"
+                                (click)="onReset('Category')">Reset</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="set-margin">
+                    <hr />
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form" [formGroup]="subCategoryForm">
+                            <div class="form-group"
+                                [ngClass]="{ 'has-error': isCate_sub_submit && fcs.CategoryId.errors }">
+                                <label>Category name *</label>
+                                <select class="form-control" formControlName="CategoryId">
+                                    <option value="">Choose Category</option>
+                                    <option *ngFor="let category of categoryList$ | async" [ngValue]="category.categoryId">
+                                        {{category.categoryName}}</option>
+                                </select>
+                                <div *ngIf="isCate_sub_submit && fcs.CategoryId.errors" class="invalid-feedback">
+                                    <div *ngIf="fcs.CategoryId.errors.required" class="error-text">Category name is
+                                        mandatory</div>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                [ngClass]="{ 'has-error': isCate_sub_submit && fcs.SubCategoryName.errors }">
+                                <label>Sub category name *</label>
+                                <input class="form-control" formControlName="SubCategoryName"
+                                    placeholder="Sub category name">
+                                <div *ngIf="isCate_sub_submit && fcs.SubCategoryName.errors" class="invalid-feedback">
+                                    <div *ngIf="fcs.SubCategoryName.errors.required" class="error-text">Sub category name
+                                        is mandatory</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Description/ details</label>
+                                <textarea class="form-control" formControlName="SubCategoryDesc"
+                                    placeholder="Description/ details" cols="10" rows="5"></textarea>
+                            </div>                            
+                            <button type="submit" class="btn btn-primary btn-custom"
+                                (click)="onSubmit('SubCategory')">Submit</button>
+                            <button type="reset" class="btn btn-primary btn-custom"
+                                (click)="onReset('SubCategory')">Reset</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
